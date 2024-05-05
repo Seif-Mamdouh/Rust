@@ -121,3 +121,20 @@ fn mn() {
 fn change(some_string: &mut String) {
     some_string.push_str(", world");
 }
+
+
+// Slice Type
+// A slice is a reference contigous sequence of elements in a collection without taking ownership of the data
+
+// String slice
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
