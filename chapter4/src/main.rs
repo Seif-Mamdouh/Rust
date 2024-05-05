@@ -47,7 +47,38 @@ println!("{}", s); // This will print `hello, world!`
     let s1 = String::from("hello");
 
     //do things with S
-    
+
 } //Rust called drop function to free the memory
+
+
+
+// when we assign s1 to s2 this means we make a copy of length, capacity and pointer of s1 to s2 but not the data
+{
+    let s1 = String::from("hello");
+    let s2 = s1;
+
+    println!("{}, world!", s1); // This will throw an error
+    // to avoid double free error, Rust does not allow this
+    // we don't want tpp free up memory twice
+    // Rust considers s1 to be invalid and does not let us use it
+} 
+
+
+// when we want to a copy of the data on the heap we use clone
+{
+    let s1 = String::from("hello");
+    // this will create a deep copy of the data on the heap
+    // the copy data can edited without affecting the original data
+    let s2 = s1.clone();
+
+    println!("s1 = {}, s2 = {}", s1, s2);
+}
+
+
+
+// Ownership and Functions
+// Passing a variable to a function will move or copy the data
+// Passing data as a value for specfic data types such as ints, float, bools are easy to make a copy and drop once they go out of scope
+// Key words passin by value are Copy and Clone instead of passing by refrence.
 
 
