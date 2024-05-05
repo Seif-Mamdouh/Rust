@@ -82,3 +82,42 @@ println!("{}", s); // This will print `hello, world!`
 // Key words passin by value are Copy and Clone instead of passing by refrence.
 
 
+let x = 5
+let y = x;
+
+
+
+
+// Refrences and Borrowing
+// it is used when you want to borrow a value without taking ownership of it
+// when the refrence goes out of scope, the value will not be dropped
+
+// however refrences cannot change the value of the data cause it's immutable by default
+
+fn mn(){
+    let s1 = String::from("hello");
+
+    // we pass the refrence of s1 to the function
+    let len = calculate_length(&s1);
+
+    println!("The length of '{}' is {}", s1, len);
+
+}
+
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}
+
+
+
+// if we want to make a mutable refrence we use &mut
+fn mn() {
+    let mut s = String::from("hello");
+
+    change(&mut s);
+}
+
+fn change(some_string: &mut String) {
+    some_string.push_str(", world");
+}
